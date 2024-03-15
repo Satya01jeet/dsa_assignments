@@ -2,14 +2,22 @@ package first;
 
 public class P22 {
     public void print(int n){
-        for(int i=0; i<2*n-1; i++){
-            int v=0;
-            for(int j=0; j<2*n-1; j++){
-                System.out.print(n-v+" ");
-                if(v<i && i<n && j<n-1) v++;
-                else{
-                    if(v>0 && i>=n-1 && j>=n-1) v--;
+        int size = 2*n-1;
+        int[][] arr = new int[size][size];
+        int front = 0, back = size-1;
+        while(n!=1){
+            for(int i=front; i<size; i++){
+                for(int j=front; j<size; j++){
+                    if(i==front || i==back || j==front || j==back) arr[i][j]=n;
                 }
+            }
+            front++;
+            back--;
+            n--;
+        }
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
+                System.out.print(arr[i][j]+" ");
             }
             System.out.println();
         }
